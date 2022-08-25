@@ -7,7 +7,37 @@
     <h1>Text to Foot</h1>
     <button id="check">Change Text</button>
     <div>Beac Rate</div>
-    <button id="rateapp">Cool</button>
+    <button id="rateapp" onclick="ExportData()">Cool</button>
   </body>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"
+  ></script>
+  <script>
+    function ExportData() {
+      filename = "reports.xlsx";
+      data = [
+        { date: "24/08/2022", isDate: true },
+        { device: "PAIRE DEVISES", achat: "ACHAT", vente: "VENTE" },
+        { device: "EUR/XAF", achat: "655.957", vente: "655.957" },
+        { device: "USD/XAF", achat: "653.7388", vente: "656.6136" },
+        { device: "GBP/XAF", achat: "774.921", vente: "782.7742" },
+        { device: "CHF/XAF", achat: "679.3272", vente: "686.2975" },
+        { device: "JPY/XAF", achat: "4.7945", vente: "4.8434" },
+        { device: "CAD/XAF", achat: "505.4106", vente: "510.585" },
+        { device: "SEK/XAF", achat: "61.5826", vente: "62.2274" },
+        { device: "ZAR/XAF", achat: "38.5343", vente: "38.9452" },
+        { device: "MAD/XAF", achat: "62.1425", vente: "62.9746" },
+        { device: "SAR/XAF", achat: "174.5546", vente: "176.3608" },
+        { device: "AED/XAF", achat: "178.5662", vente: "180.3905" },
+        { device: "CNY/XAF", achat: "95.5337", vente: "96.5052" },
+        { device: "DKK/XAF", achat: "87.7431", vente: "88.6428" },
+      ];
+      var ws = XLSX.utils.json_to_sheet(data);
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Rate");
+      XLSX.writeFile(wb, filename);
+    }
+  </script>
   <script src="main.js"></script>
 </html>
